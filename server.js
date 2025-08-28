@@ -6,6 +6,7 @@ import morgan from 'morgan';
 const BUILD_PATH = './build/server/index.js';
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PORT = Number.parseInt(process.env.PORT || '3417');
+const HOST = "0.0.0.0";
 
 const app = express();
 
@@ -37,15 +38,11 @@ if (DEVELOPMENT) {
     '/assets',
     express.static('build/client/assets', { immutable: true, maxAge: '1y' }),
   );
-  app.use(
-    '/output',
-    express.static('output', { immutable: true, maxAge: '1y' }),
-  );
   app.use(morgan('tiny'));
   app.use(express.static('build/client', { maxAge: '1h' }));
   app.use(await import(BUILD_PATH).then((mod) => mod.app));
 }
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });

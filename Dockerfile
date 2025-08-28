@@ -53,8 +53,10 @@ RUN mkdir /ms-playwright && \
 
 # 3. Build rest
 
-COPY ./package.json package-lock.json server.js /app/
+COPY ./package.json package-lock.json server.js playwright.config.ts /app/
+# COPY ./tests /app/tests
 COPY --from=production-dependencies-env /app/node_modules /app/node_modules
 COPY --from=build-env /app/build /app/build
 WORKDIR /app
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "test:update-snapshots-local"]
+EXPOSE 3417

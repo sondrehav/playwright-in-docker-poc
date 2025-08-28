@@ -13,7 +13,10 @@ import stylesheet from '@/app.css?url';
 import { MotionConfig } from 'motion/react';
 
 export const meta: MetaFunction = () => {
-  return [{ title: '🍌 Banan 🍌' }, { name: 'description', content: 'Bananer! 🍌🍌🍌' }];
+  return [
+    { title: '🍌 Banan 🍌' },
+    { name: 'description', content: 'Bananer! 🍌🍌🍌' },
+  ];
 };
 
 export const links: Route.LinksFunction = () => [

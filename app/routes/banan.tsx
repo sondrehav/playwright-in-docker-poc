@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { type Route } from '../../.react-router/types/app/routes/+types/banan';
+import type { Route } from './+types/banan';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const url = URL.parse(request.url)?.searchParams.get('path');
@@ -19,12 +19,10 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   };
 };
 
-const Banan = ({ loaderData }: Route.ComponentProps) => {
+export default function Banan({ loaderData }: Route.ComponentProps) {
   return (
     <main>
       <img src={loaderData.data} alt={'Result'} />
     </main>
   );
-};
-
-export default Banan;
+}
